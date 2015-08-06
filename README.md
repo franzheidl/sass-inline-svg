@@ -25,10 +25,7 @@ Sass-inline-svg adds a `inline-svg` function you can use with Sass. It url-encod
 
 ###Replace Variable Strings
 
-Replacing variable strings in SVG when inlining them with Sass makes sense e.g. if you need multiple variants of the same graphic with different fill colors:
-
-![Close Icon Black](close-blk.svg)
-![Close Icon Black](close-rd.svg)
+Replacing variable strings in SVG when inlining them with Sass makes sense e.g. if you need multiple variants of the same graphic with different fill colors.
 
 With Sass-Inline-Svg you only need one source svg file with a variable string for `fill`:
 
