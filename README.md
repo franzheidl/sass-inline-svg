@@ -17,7 +17,7 @@ Add this line to your application's Gemfile:
 
 ## Usage
 
-Sass-inline-svg adds a `inline-svg` function you can use with Sass. It url-encodes the contents of the specified file and inlines it in your CSS.
+Sass-inline-svg adds a `inline-svg` function you can use with Sass. It url-encodes the contents of the specified file and inlines it in your CSS (Url-encoded SVG is about 30% smaller than base64).
 
 ###Basic
 
