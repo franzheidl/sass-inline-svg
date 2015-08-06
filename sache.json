@@ -1,0 +1,5 @@
+{
+  "name": "sass-inline-svg",
+  "description": "Inline url-encoded SVG with Sass. Optional variable string replacement included!",
+  "tags": ["svg", "inline", "variable", "replace"]
+}
