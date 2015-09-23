@@ -4,13 +4,25 @@ require "cgi"
 
 module Sass::Script::Functions
 
+  # Alias function to comply with old documentation
   def svg_inline(path, repl = nil)
-    assert_type path, :String  
+    svg_inline(path, repl)
+  end
 
-    svg = _readFile(path.value).strip
+  def inline_svg(path, repl = nil)
+    assert_type path, :String
+
+    path = path.value.strip()
+
+    # Use Rails asset pipeline if in Rails context:
+    if defined?(Rails)
+      path = Rails.application.assets[path]
+    end
+
+    svg = _readFile(path).strip
 
     if repl && repl.respond_to?('to_h')
-      repl = repl.to_h      
+      repl = repl.to_h
       svg = svg.to_s
 
       repl.each_pair do |k, v|
@@ -35,7 +47,7 @@ module Sass::Script::Functions
         f.read
       end
     else
-      raise Sass::SyntaxError, "File not found or cannot be read: #{path}" 
+      raise Sass::SyntaxError, "File not found or cannot be read: #{path}"
     end
   end
 
