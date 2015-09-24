@@ -27,6 +27,8 @@ Sass-inline-svg adds a `inline-svg` function you can use with Sass. It url-encod
 
 When working with plain Sass, you'll have to use the full path to the svg file, when using Rails the path will be resolved by the Rails asset pipeline.
 
+The `svg-inline()` function as it was named in earlier versions is now aliased to `inline-svg()` so either of both can be used.
+
 ###Replace Variable Strings
 
 Replacing variable strings in SVG when inlining them with Sass makes sense e.g. if you need multiple variants of the same graphic with different fill colors.
