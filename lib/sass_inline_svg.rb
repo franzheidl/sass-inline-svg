@@ -6,7 +6,7 @@ module Sass::Script::Functions
 
   # Alias function to comply with old documentation
   def svg_inline(path, repl = nil)
-    svg_inline(path, repl)
+    inline_svg(path, repl)
   end
 
   def inline_svg(path, repl = nil)
