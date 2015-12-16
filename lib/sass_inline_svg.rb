@@ -16,7 +16,7 @@ module Sass::Script::Functions
 
     # Use Rails asset pipeline if in Rails context:
     if defined?(Rails)
-      path = Rails.application.assets[path]
+      path = Rails.application.assets[path].pathname
     end
 
     svg = _readFile(path).strip
