@@ -8,15 +8,17 @@ module Sass::Script::Functions
   def svg_inline(path, repl = nil)
     inline_svg(path, repl)
   end
-
+  
   def inline_svg(path, repl = nil)
     assert_type path, :String
 
     path = path.value.strip()
 
-    # Use Rails asset pipeline if in Rails context:
+    # Use Rails asset pipeline if in Rails context (and handle File not found):
     if defined?(Rails)
-      path = Rails.application.assets[path].pathname
+      asset = Rails.application.assets.find_asset(path)
+      raise "File not found or cannot be read: #{path}" if asset.nil?
+      path = asset
     end
 
     svg = _readFile(path).strip
