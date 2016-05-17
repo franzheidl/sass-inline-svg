@@ -18,7 +18,7 @@ module Sass::Script::Functions
     if defined?(Rails)
       asset = Rails.application.assets.find_asset(path)
       raise "File not found or cannot be read: #{path}" if asset.nil?
-      path = asset
+      path = asset.respond_to?(:pathname) ? asset.pathname.to_s : asset.to_s
     end
 
     svg = _readFile(path).strip
