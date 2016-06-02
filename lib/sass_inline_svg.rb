@@ -13,12 +13,12 @@ module Sass::Script::Functions
     assert_type path, :String
     path = path.value.strip()
 
-    # Use Rails asset pipeline if in Rails context (and handle File not found):
+    # Use Soprockets / Rails asset pipeline if in Rails context (and handle File not found):
     if defined?(Rails)
       asset = Rails.application.assets.find_asset(path)
       raise "File not found or cannot be read (Sprockets): #{path}" if asset.nil?
       svg = asset.to_s
-    else
+    else # otherwise read file:
       svg = _readFile(path).strip
     end
 
