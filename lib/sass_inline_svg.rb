@@ -11,17 +11,16 @@ module Sass::Script::Functions
   
   def inline_svg(path, repl = nil)
     assert_type path, :String
-
     path = path.value.strip()
 
     # Use Rails asset pipeline if in Rails context (and handle File not found):
     if defined?(Rails)
       asset = Rails.application.assets.find_asset(path)
-      raise "File not found or cannot be read: #{path}" if asset.nil?
-      path = asset.respond_to?(:filename) ? asset.filename.to_s : asset.to_s
+      raise "File not found or cannot be read (Sprockets): #{path}" if asset.nil?
+      svg = asset.to_s
+    else
+      svg = _readFile(path).strip
     end
-
-    svg = _readFile(path).strip
 
     if repl && repl.respond_to?('to_h')
       repl = repl.to_h
@@ -38,6 +37,7 @@ module Sass::Script::Functions
     encoded = CGI::escape(svg).gsub("+", "%20")
     encoded_url = "url('data:image/svg+xml;charset=utf-8," + encoded + "')"
     Sass::Script::String.new(encoded_url)
+    
   end
 
 
@@ -49,7 +49,7 @@ module Sass::Script::Functions
         f.read
       end
     else
-      raise Sass::SyntaxError, "File not found or cannot be read: #{path}"
+      raise Sass::SyntaxError, "File not found or cannot be read (native): #{path}"
     end
   end
 
