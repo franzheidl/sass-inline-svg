@@ -15,7 +15,7 @@ module Sass::Script::Functions
 
     # Use Soprockets / Rails asset pipeline if in Rails context (and handle File not found):
     if defined?(Rails)
-      asset = Rails.application.assets.find_asset(path)
+      asset = (Rails.application.assets || ::Sprockets::Railtie.build_environment(Rails.application)).find_asset(path).to_s
       raise "File not found or cannot be read (Sprockets): #{path}" if asset.nil?
       svg = asset.to_s
     else # otherwise read file:
