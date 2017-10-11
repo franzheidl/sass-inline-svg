@@ -4,6 +4,8 @@
 
 Inline url-encoded SVG with Sass. Optional variable string replacement included!
 
+This is a Ruby Gem to be used with Ruby Sass, a version of this for node/npm-based environments with node-sass lives here: [sass-inline-svg-utf8](https://github.com/franzheidl/sass-inline-svg-utf8)
+
 
 ## Installation
 
